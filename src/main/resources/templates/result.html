@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Registration Result</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Welcome to the Movie Portal!</h1>
+<p th:text="'You have been registered as: ' + ${user.userName}" />
+<p th:text="'email: ' + ${user.email}" />
+<a href="/users/register">Go back to registration</a>
+<a href="/movies/all">See the movies</a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Marks and Spencer Movie Portal</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Movie Portal User Registration</h1>
+<form action="#" th:action="@{/users/register}" th:object="${user}" method="post">
+    <p>Id: <input type="text" th:field="*{userId}"/></p>
+    <p>UserName: <input type="text" th:field="*{userName}"/></p>
+    <p>First Name: <input type="text" th:field="*{firstName}"/></p>
+    <p>Last Name: <input type="text" th:field="*{lastName}"/></p>
+    <p>Email: <input type="text" th:field="*{email}"/></p>
+    <p>Card Number: <input type="text" th:field="*{paymentInfo}"/></p>
+
+    <p><input type="submit" value="Register"/> <input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="fileAppender" class="uk.org.simonsite.log4j.appender.TimeAndSizeRollingAppender">
+        <param name="File" value="./logs/movieportal.log"/>
+        <param name="Threshold" value="DEBUG"/>
+        <param name="DatePattern" value=".yyyy-MM-dd"/>
+        <param name="MaxFileSize" value="200MB"/>
+        <param name="MaxRollFileCount" value="100"/>
+        <param name="DateRollEnforced" value="true"/>
+        <param name="FileRollEventMessage"
+               value="New log file following a roll. Check the previous zip for older logs"/>
+        <param name="BufferedIO" value="false"/>
+        <param name="CompressionAlgorithm" value="ZIP"/>
+        <param name="ImmediateFlush" value="true"/>
+        <param name="RollOnStartup" value="true"/>
+        <param name="ScavengeInterval" value="300000"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%x%-5p] [%d{ISO8601} - %c{1}] %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="asyncAppenderFile" class="org.apache.log4j.AsyncAppender">
+        <param name="BufferSize" value="500"/>
+        <appender-ref ref="fileAppender"/>
+    </appender>
+
+    <appender class="org.apache.log4j.ConsoleAppender" name="consoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param value="%d %p [%c] - &lt;%m&gt;%n" name="ConversionPattern"/>
+        </layout>
+    </appender>
+
+    <logger name="com.marksandspencer.movieportal" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="asyncAppenderFile"/>
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+
+    <logger name="org.thymeleaf" additivity="false">
+        <level value="TRACE"/>
+        <appender-ref ref="asyncAppenderFile"/>
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="asyncAppenderFile"/>
+        <appender-ref ref="consoleAppender"/>
+    </root>
+
+</log4j:configuration>
