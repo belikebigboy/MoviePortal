@@ -5,6 +5,7 @@ import io.spring.movieportal.model.user.User;
 import io.spring.movieportal.persistence.user.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,8 @@ public class DeleteUserService {
     /**
      * Schedule the deletion of older than a month regular users
      */
-    @Scheduled(fixedRate = 20000)
+    @Async
+    @Scheduled(fixedRate = 200000)
     public void scanAndDelete() {
         LOGGER.info("Delete job is running.");
 
