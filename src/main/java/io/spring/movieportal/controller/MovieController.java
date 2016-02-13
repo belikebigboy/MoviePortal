@@ -8,17 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@RequestMapping(value="/portal")
 public class MovieController {
 
-    private MovieService movieService;
-
     @Autowired
-    public MovieController(MovieService movieService) {
-        this.movieService = movieService;
-    }
-
-
+    private MovieService movieService;
 
     @RequestMapping(value = "/movies" , method = RequestMethod.GET)
     public Movie getMovieById(@RequestParam(value = "id") int movieId) {

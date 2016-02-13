@@ -6,21 +6,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value = "/portal")
 public class IndexController implements ErrorController {
 
     private static final String PATH = "/error";
 
     @RequestMapping(value = PATH)
     public String error() {
-        return "Error handling";
+        return "error";
     }
 
-    @RequestMapping(value="")
+    @RequestMapping(value = "/")
     String index() {
-        return "Welcome to the Movie Online portal. Please browse the movies " +
-                " <a href=\"/movies/all\">See the movies</a>" +
-                "\n or Register to the portal <a href=\"/users/register\">Register</a> ";
+        return "index";
     }
 
     public String getErrorPath() {
