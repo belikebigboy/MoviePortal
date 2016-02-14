@@ -14,12 +14,8 @@ import java.util.List;
 @RestController
 public class OrderController {
 
-    private SubscriptionService orderService;
-
     @Autowired
-    public OrderController(SubscriptionService subscriptionService) {
-        this.orderService = subscriptionService;
-    }
+    private SubscriptionService orderService;
 
     @RequestMapping(value = "/orders/all")
     public List<Order> getAllOrdersForUser(@RequestParam int userId) {

@@ -12,6 +12,7 @@ public abstract class User {
     private String email;
     private UserStatus userStatus;
     private Date creationDate;
+    private String password;
 
     public User() {
     }
@@ -76,5 +77,13 @@ public abstract class User {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

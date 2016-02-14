@@ -27,17 +27,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
 
                 .authorizeRequests()
-                .antMatchers("/", "/resources/**", "/home", "/about", "/index").permitAll()
+                .antMatchers("/", "/resources/**", "/home", "/about", "/index", "/register").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/users/**").access("hasRole('ADMIN') and hasRole('USER')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/movies/all")
+                .failureUrl("/login?error")
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
+                .and()
+                .csrf();
     }
 
     @Autowired

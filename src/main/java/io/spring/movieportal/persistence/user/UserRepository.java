@@ -18,12 +18,8 @@ import java.util.List;
 @Repository
 public class UserRepository {
 
-    private JdbcTemplate jdbcTemplate;
-
     @Autowired
-    public UserRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private JdbcTemplate jdbcTemplate;
 
     public RegisteredUser getRegisteredUserbyId(int userId) {
         String selectSQL = "SELECT * FROM USERS WHERE USER_ID = ? AND USER_TYPE=1";
@@ -42,7 +38,7 @@ public class UserRepository {
     }
 
     public void createRegisteredUser(final RegisteredUser user) {
-        String insertSQL = "INSERT INTO USERS (USER_ID, USER_NAME, USER_EMAIL, USER_TYPE, FIRST_NAME, LAST_NAME, PAYMENT_INFO, DISCOUNT_RATE, CREATION_DATE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String insertSQL = "INSERT INTO USERS (USER_ID, USER_NAME, USER_EMAIL, USER_TYPE, FIRST_NAME, LAST_NAME, PAYMENT_INFO, DISCOUNT_RATE, CREATION_DATE, PASSWORD) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         jdbcTemplate.update(insertSQL, new PreparedStatementSetter() {
             public void setValues(PreparedStatement preparedStatement) throws SQLException {
                 preparedStatement.setInt(1, user.getUserId());
@@ -54,6 +50,7 @@ public class UserRepository {
                 preparedStatement.setString(7, user.getPaymentInfo());
                 preparedStatement.setFloat(8, user.getDiscountRate());
                 preparedStatement.setDate(9, new Date(System.currentTimeMillis()));
+                preparedStatement.setString(10, user.getPassword());
             }
         });
     }

@@ -10,25 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-//@RequestMapping(value="/portal")
 public class UserController {
 
+    @Autowired
     private UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-
-    @RequestMapping(value = "/users/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String userForm(Model model) {
         model.addAttribute("user", new RegisteredUser());
         return "userform";
     }
 
 
-    @RequestMapping(value = "/users/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String submitUser (@ModelAttribute RegisteredUser user, Model model) {
         model.addAttribute("user", user);
         userService.addNewRegistration(user);

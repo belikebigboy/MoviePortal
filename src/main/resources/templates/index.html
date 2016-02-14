@@ -2,10 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Portal Application</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+          href="../../css/bootstrap.min.css"/>
 </head>
 <body>
 <h1>Welcome to Movie Portal!</h1>
 
 <p>Click <a th:href="@{/login}">here</a> to login.</p>
+
+
+<p>Not a user?. Sign up <a th:href="@{/register}">here</a>.</p>
 </body>
 </html>
